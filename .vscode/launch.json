@@ -1,0 +1,48 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "Internal Simulator",
+            "remoteType": "zsim",
+            "zsim": {
+                "cpuFrequency": 3500000.0,
+                "cpuLoadInterruptRange": 1,
+                "visualMemory": true,
+                "memoryModel": "ZX128K",
+                "ulaScreen": true,
+                "zxBorderWidth": 20,
+                "vsyncInterrupt": true,
+                "zxBeeper": true,
+                "zxKeyboard": true,
+            },
+            "sjasmplus": [
+                {
+                    "path": "build${pathSeparator}${workspaceFolderBasename}.sld"
+                }
+            ],
+            "history": {
+                "reverseDebugInstructionCount": 1000000,
+                "spotCount": 10,
+                "codeCoverageEnabled": true
+            },
+            "startAutomatically": false,
+            "commandsAfterLaunch": [
+                "-logpoint enable",
+                "-assertion enable",
+                "-wpmem enable",
+                // "-sprites",
+                // "-patterns"
+            ],
+            "disassemblerArgs": {
+                "esxdosRst": true
+            },
+            "rootFolder": "${workspaceFolder}",
+            //"topOfStack": "STACK_TOP",
+            "load": "build${pathSeparator}${workspaceFolderBasename}.sna",
+            "smallValuesMaximum": 513,
+            "tmpDir": ".tmp"
+        },
+    ]
+}

@@ -1,0 +1,72 @@
+{
+    "version": "2.0.0",
+    "options": {
+        "env": {
+            // Custom project name. If not defined, directory name used.
+            "PROJECT_NAME": "zx-boilerplate"
+        }
+    },
+    "windows": {
+        "options": {
+            "env": {
+                // ZX Spectrum emulator executable (Windows)
+                "EMULATOR_BINARY": "unreal",
+                // Copy snapshot to this file (Windows)
+                "COPY_SNAPSHOT_TO": "C:/TEMP/quicksave.sna"
+            }
+        }
+    },
+    "linux": {
+        "options": {
+            "env": {
+                // ZX Spectrum emulator executable (Linux)
+                "EMULATOR_BINARY": "xpeccy",
+                // Copy snapshot to this file (Linux)
+                "COPY_SNAPSHOT_TO": "/tmp/quicksave.sna"
+            }
+        }
+    },
+    "osx": {
+        "options": {
+            "env": {
+                // ZX Spectrum emulator executable (Linux)
+                "EMULATOR_BINARY": "xpeccy",
+                // Copy snapshot to this file (Linux)
+                "COPY_SNAPSHOT_TO": "/tmp/quicksave.sna"
+            }
+        }
+    },
+    "type": "shell",
+    "isBackground": false,
+    "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+    },
+    "problemMatcher": "$errmatcher-sjasmplus",
+    "tasks": [
+        {
+            "label": "kill-emulator",
+            "type": "shell",
+            "command": "pkill -KILL -f ${EMULATOR_BINARY} || exit 0"
+        },
+        {
+            "label": "build",
+            "command": "make run",
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "kill-emulator"
+            ],
+            "dependsOrder": "sequence"
+        }
+    ]
+}
