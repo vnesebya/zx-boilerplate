@@ -31,9 +31,12 @@ build: ## Default: build project
 		-DBIN_FILENAME=\"$(BUILD_FOLDER)/$(PROJECT_NAME).bin\" \
 		-DTAP_FILENAME=\"$(BUILD_FOLDER)/$(PROJECT_NAME).tap\" \
 		-DTRD_FILENAME=\"$(BUILD_FOLDER)/$(PROJECT_NAME).trd\" \
+		-DUSERL_FILENAME=\"$(BUILD_FOLDER)/user.l\" \
 		src/main.asm
 
 run: build ## Build and run snapshot in emulator
+	# .emulator/Linux/x86_64/speccy -home .emulator/ROM  $(BUILD_FOLDER)/$(PROJECT_NAME).tap
+	# .emulator/Linux/x86_64/speccy -home .emulator/ROM  $(BUILD_FOLDER)/$(PROJECT_NAME).trd
 	$(EMULATOR_BINARY) $(BUILD_FOLDER)/$(PROJECT_NAME).sna
 
 copy: build ## Build and copy snapshot to given path
